@@ -15,11 +15,17 @@ using namespace std;
 
 class dionica {
 public:
+	dionica(int tip, int duljina)
+	{
+		this.tip = tip;
+		this.duljina = duljina
+	}
+	
 	int tip, duljina;
 };
 
 class odcjep {
-	class dionica;
+	dionica dionica;
 
 };
 
@@ -75,9 +81,7 @@ int main()
 			cout << "Unesi duljinu dionice " << i + 1 << "." << j + 1 << ": " << "\n";
 			cin >> duljina;
 
-			dionica nova_dionica;
-			nova_dionica.tip = tip;
-			nova_dionica.duljina = duljina;
+			dionica nova_dionica(tip, duljina);
 
 			dionice.push_back(nova_dionica);
 		}
