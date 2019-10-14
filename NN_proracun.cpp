@@ -11,7 +11,21 @@ using namespace std;
 
 class mreza {
 public:
+<<<<<<< HEAD
 	int odcjep, dinica, tip, duljina;
+=======
+	dionica(int tip, int duljina)
+	{
+		this.tip = tip;
+		this.duljina = duljina
+	}
+	
+	int tip, duljina;
+};
+
+class odcjep {
+	dionica dionica;
+>>>>>>> 5804c4d3c13375124ab3ee062de2911481796ca9
 
 	mreza(int odcjep, int dionica, int tip, int duljina){
 		this->dinica = dionica;
@@ -70,6 +84,10 @@ int main()
 			cout << "Unesi duljinu dionice " << i + 1 << "." << j + 1 << ": ";
 			cin >> duljina;
 
+<<<<<<< HEAD
+=======
+			dionica nova_dionica(tip, duljina);
+>>>>>>> 5804c4d3c13375124ab3ee062de2911481796ca9
 
 	
 			mreza nova_dionica (i, j, tip, duljina);
