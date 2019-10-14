@@ -9,20 +9,17 @@ using namespace std;
 
 
 
-
-
-
-
-class dionica {
+class mreza {
 public:
-	int tip, duljina;
+	int odcjep, dinica, tip, duljina;
+
+	mreza(int odcjep, int dionica, int tip, int duljina){
+		this->dinica = dionica;
+		this->odcjep = odcjep;
+		this->tip = tip;
+		this->duljina = duljina;
+	}
 };
-
-class odcjep {
-	class dionica;
-
-};
-
 
 
 int main()
@@ -33,9 +30,6 @@ int main()
 	int broj_odcjepa;
 
 
-
-
-	
 	cout << "Upiši broj odcjepa: ";
 	cin >> broj_odcjepa;
 
@@ -44,12 +38,13 @@ int main()
 	
 	vector <int> broj_dionica_po_odcjepu_V;
 
-	int bdpo;
+	int bdpo_temp;
 	for (int i = 0; i < broj_odcjepa; i++) {
 		cout << "Broj dionica odcjepa: " << i + 1<< "\n";
-		cin >> bdpo;
-		broj_dionica_po_odcjepu_V.push_back(bdpo);
+		cin >> bdpo_temp;
+		broj_dionica_po_odcjepu_V.push_back(bdpo_temp);
 	}
+
 
 	cout << "\n" << "\n";
 	cout << broj_dionica_po_odcjepu_V[0];
@@ -60,35 +55,41 @@ int main()
 
 	
 
-	vector <dionica> dionice;
-
-	map <int, odcjep> mreza;
+	vector <mreza> Mreza;
 
 
 
 	int tip, duljina;
 
+
 	for (int i = 0; i < broj_odcjepa; i++) {
 		for (int j = 0; j < broj_dionica_po_odcjepu_V[i]; j++) {
-			cout << "Unesi tip vodič za dionicu " << i + 1 << "." << j + 1 << ": " << "\n";
+
+			cout << "Unesi tip vodič za dionicu " << i + 1 << "." << j + 1 << ": ";
 			cin >> tip;
-			cout << "Unesi duljinu dionice " << i + 1 << "." << j + 1 << ": " << "\n";
+			cout << "Unesi duljinu dionice " << i + 1 << "." << j + 1 << ": ";
 			cin >> duljina;
 
-			dionica nova_dionica;
-			nova_dionica.tip = tip;
-			nova_dionica.duljina = duljina;
 
-			dionice.push_back(nova_dionica);
+	
+			mreza nova_dionica (i, j, tip, duljina);
+			Mreza.push_back(nova_dionica);
 		}
 	}
 
-	cout << "\n" << "\n";
-	cout << dionice[0].tip;
-	cout << "\n" << "\n";
-	cout << dionice[0].duljina;
+	
 
 
+	int size = Mreza.size();
+
+	
+	for (int i = 0; i < size; i++) {
+		
+		cout << "Odcjep broj " << Mreza[i].odcjep + 1 << " dionica broj " << Mreza[i].dinica + 1 << " , tip vodiča: " << Mreza[i].tip << " duljine: " << Mreza[i].duljina << " m " << "\n";
+		
+
+	}
+	
 
 }
 
