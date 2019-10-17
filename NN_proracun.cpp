@@ -3,17 +3,17 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
+
 
 using namespace std;
 
 
 
-class mreza {
+class Mreza {
 public:
 	int odcjep, dinica, tip, duljina;
 
-	mreza(int odcjep, int dionica, int tip, int duljina){
+	Mreza(int odcjep, int dionica, int tip, int duljina){
 		this->dinica = dionica;
 		this->odcjep = odcjep;
 		this->tip = tip;
@@ -22,75 +22,108 @@ public:
 };
 
 
+
+class Povezanost {
+public:
+	int pov_odcjep;
+	int pov_dionica;
+
+	Povezanost(int pov_odcjep, int pov_dionica) {
+		this->pov_odcjep = pov_odcjep;
+		this->pov_dionica = pov_dionica;
+	}
+};
+
+
+
 int main()
 {
-	//Inicijalizacija
-	int standard_potrošnje = 0;
-	int broj_dionica = 0;
-	int broj_odcjepa;
+	int broj_dionica, broj_odcjepa, temp, tip, duljina;
 
-
+	//Unos broja odcjepa
 	cout << "Upiši broj odcjepa: ";
 	cin >> broj_odcjepa;
 
+	//Unos broja dionica za svaki odcjep
+	vector <int> VEC_broj_dionica_po_odcjepu;
 
-
-	
-	vector <int> broj_dionica_po_odcjepu_V;
-
-	int bdpo_temp;
-	for (int i = 0; i < broj_odcjepa; i++) {
-		cout << "Broj dionica odcjepa: " << i + 1<< "\n";
-		cin >> bdpo_temp;
-		broj_dionica_po_odcjepu_V.push_back(bdpo_temp);
+	for (int i = 1; i < broj_odcjepa + 1; i++) {
+		cout << "Koliko dionica ima odcjep " << i << " : ";
+		cin >> temp;
+		VEC_broj_dionica_po_odcjepu.push_back(temp);
 	}
 
 
-	cout << "\n" << "\n";
-	cout << broj_dionica_po_odcjepu_V[0];
-	cout << "\n" << "\n";
-	cout << broj_dionica_po_odcjepu_V[1];
 
+	//Povezanost__________________________INFO -> ako se odcjep spaja na 0 znači da je spojen na TS____________________________________________________________________________________________________________________________________
+
+	vector <int> v_povezanost;
+
+	
+	//Upisuje povezanost odcjepa
+	for (int i = 1; i < broj_odcjepa + 1; i++) {
+		cout << "Odcjep " << i << " se spaja na odcjep: ";
+		cin >> temp;
+		v_povezanost.push_back(temp);  
+	}
 
 
 	
-
-	vector <mreza> Mreza;
-
+	vector <Povezanost> povezanost;
 
 
-	int tip, duljina;
+	//Upisuje početnu točku odcjepa
+	for (int i = 1; i < broj_odcjepa + 1; i++) {
+		if (v_povezanost[i - 1] != 0) {
+			cout << "Odcjep " << i << " se spaja na odcjep " << v_povezanost[i - 1] << " u točki: ";
+			cin >> temp;
+			Povezanost novi_objekt(v_povezanost[i - 1], temp);
+			povezanost.push_back(novi_objekt);
+		}
+		else {
+			Povezanost novi_objekt(0, 0);
+			povezanost.push_back(novi_objekt);
+		}
+			
+	}
+
+
+	//ispis povezanosti
+	for (int i = 0; i < broj_odcjepa; i++) {
+		cout << "Odcjep broj " << i << " se spaja na odcjep " << povezanost[i].pov_odcjep  << " u točki " << povezanost[i].pov_odcjep  << "." << povezanost[i].pov_dionica  << "\n";
+	}
+
+	//_________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+	vector <Mreza> mreza;
 
 
 	for (int i = 0; i < broj_odcjepa; i++) {
-		for (int j = 0; j < broj_dionica_po_odcjepu_V[i]; j++) {
+		for (int j = 0; j < VEC_broj_dionica_po_odcjepu[i]; j++) {
 
 			cout << "Unesi tip vodič za dionicu " << i + 1 << "." << j + 1 << ": ";
 			cin >> tip;
 			cout << "Unesi duljinu dionice " << i + 1 << "." << j + 1 << ": ";
 			cin >> duljina;
 
-
-	
-			mreza nova_dionica (i, j, tip, duljina);
-			Mreza.push_back(nova_dionica);
+			Mreza nova_dionica (i, j, tip, duljina);
+			mreza.push_back(nova_dionica);
 		}
 	}
 
-	
+	cout << endl;
 
 
-	int size = Mreza.size();
+	int size = mreza.size();
 
 	
 	for (int i = 0; i < size; i++) {
 		
-		cout << "Odcjep broj " << Mreza[i].odcjep + 1 << " dionica broj " << Mreza[i].dinica + 1 << " , tip vodiča: " << Mreza[i].tip << " duljine: " << Mreza[i].duljina << " m " << "\n";
+		cout << "Odcjep broj " << mreza[i].odcjep + 1 << " dionica broj " << mreza[i].dinica + 1 << " , tip vodiča: " << mreza[i].tip << " duljine: " << mreza[i].duljina << " m " << "\n";
 		
-
 	}
-	
-
 }
 
 
@@ -104,3 +137,5 @@ int main()
 		cin >> standard_potrošnje;
 	}
 	*/
+
+
